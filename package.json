@@ -1,0 +1,30 @@
+{
+  "name": "triformine-dev",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start -p 7575",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@chakra-ui/icons": "^1.1.1",
+    "@chakra-ui/react": "^1.7.2",
+    "@emotion/react": "^11.7.0",
+    "@emotion/styled": "^11.6.0",
+    "@react-icons/all-files": "^4.1.0",
+    "framer-motion": "^5.3.3",
+    "next": "12.0.4",
+    "next-i18next": "^9.2.0",
+    "next-seo": "^4.28.1",
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
+  },
+  "devDependencies": {
+    "@types/react": "17.0.37",
+    "eslint": "8.3.0",
+    "eslint-config-next": "12.0.4",
+    "typescript": "4.5.2"
+  }
+}
