@@ -7,6 +7,7 @@ import {
     StackDivider,
     useColorModeValue,
 } from "@chakra-ui/react";
+import {FaGithub} from "@react-icons/all-files/fa/FaGithub";
 import {FaDiscord} from "@react-icons/all-files/fa/FaDiscord";
 import {FaInstagram} from "@react-icons/all-files/fa/FaInstagram";
 import {FaReddit} from "@react-icons/all-files/fa/FaReddit";
@@ -26,6 +27,7 @@ export default function Footer() {
             >
                 <Text fontSize="sm">&copy; {new Date().getFullYear()} TriForMine. {t('rights')}</Text>
                 <ButtonGroup variant="ghost" color="gray.600">
+                    <IconButton target="_blank" rel="noreferrer" as="a" href="https://www.github.com/triformine" aria-label="Github" icon={<FaGithub fontSize="20px" />}/>
                     <IconButton target="_blank" rel="noreferrer" as="a" href="https://www.twitter.com/triformine" aria-label="Twitter" icon={<FaTwitter fontSize="20px" />}/>
                     <IconButton target="_blank" rel="noreferrer" as="a" href="https://www.instagram.com/triformine" aria-label="Instagram" icon={<FaInstagram fontSize="20px" />}/>
                     <IconButton target="_blank" rel="noreferrer" as="a" href="https://www.reddit.com/u/triformine" aria-label="Reddit" icon={<FaReddit fontSize="20px" />}/>
