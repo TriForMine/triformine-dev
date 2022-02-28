@@ -1,7 +1,4 @@
-import type { NextPage } from 'next'
 import {VStack, Text, Box, Center, Heading, Divider, StackDivider, Stack, Progress, SimpleGrid, Icon} from "@chakra-ui/react";
-import { useTranslation } from 'next-i18next';
-import {serverSideTranslations} from "next-i18next/serverSideTranslations";
 import {DiPhp} from "@react-icons/all-files/di/DiPhp";
 import {IconType} from "@react-icons/all-files";
 import {DiHtml5} from "@react-icons/all-files/di/DiHtml5";
@@ -22,8 +19,11 @@ import {SiUnity} from "@react-icons/all-files/si/SiUnity";
 import {SiUnrealengine} from "@react-icons/all-files/si/SiUnrealengine";
 import {SiDiscord} from "@react-icons/all-files/si/SiDiscord";
 import {SiBrave} from "@react-icons/all-files/si/SiBrave";
+import {i18n} from "~/i18n.server";
+import {json, LoaderFunction, MetaFunction, useLoaderData} from "remix";
+import {useTranslation} from "react-i18next";
 
-const Skill = ({name, color, value, icon}: {name: string, color: string, value: number, icon: IconType }) => {
+function Skill({name, color, value, icon}: {name: string, color: string, value: number, icon: IconType }) {
     return <Box _hover={{boxShadow: "dark-lg"}} boxShadow="2xl" rounded="md" p={6} width="100%">
         <Center>
             <Heading size="lg" as="h3"><Icon w={8} h={8} as={icon}/> {name}</Heading>
@@ -32,8 +32,21 @@ const Skill = ({name, color, value, icon}: {name: string, color: string, value: 
     </Box>
 }
 
-const Home: NextPage = () => {
-    const { t } = useTranslation('home');
+export let loader: LoaderFunction = async (args) => {
+    if (!args.params.locale)
+        throw new Error('Locale not specified.')
+
+    return json({
+        i18n: await i18n.getTranslations(args.params.locale, ['home', 'footer', 'navbar']),
+    });
+};
+
+export const meta: MetaFunction = () => ({
+    title: "TriForMine",
+});
+
+export default function Home() {
+    const { i18n } = useLoaderData();
 
     return (
         <VStack>
@@ -43,13 +56,13 @@ const Home: NextPage = () => {
                         TriForMine
                     </Heading>
                 </Center>
-                <Text textAlign="center" marginTop={5}>{t('introduction')}</Text>
+                <Text textAlign="center" marginTop={5}>{i18n.home.introduction}</Text>
             </Box>
             <Divider type="dashed" />
             <VStack paddingX={3} width="100%" divider={<StackDivider />} spacing={16}>
                 <Stack width="100%" alignItems="center" justifyContent="center">
                     <Heading textAlign="center" as="h2">
-                        {t('skills')}
+                        {i18n.home.skills}
                     </Heading>
                     <SimpleGrid py={3} columns={[1,2,3,4]} width="100%" spacing={16}>
                         <Skill icon={DiHtml5} name="HTML" color="green" value={95} />
@@ -69,7 +82,7 @@ const Home: NextPage = () => {
                 </Stack>
                 <Stack width="100%" alignItems="center" justifyContent="center">
                     <Heading textAlign="center" as="h2">
-                        {t('software')}
+                        {i18n.home.software}
                     </Heading>
                     <SimpleGrid py={3} columns={[1,2,3]} width="100%" spacing={16}>
                         <Skill name="Intellij IDEA Ultimate" icon={SiIntellijidea} color="green" value={100} />
@@ -84,11 +97,3 @@ const Home: NextPage = () => {
         </VStack>
     )
 }
-
-export const getStaticProps = async ({ locale }: any) => ({
-    props: {
-        ...await serverSideTranslations(locale, ['home', 'footer', 'navbar']),
-    },
-})
-
-export default Home

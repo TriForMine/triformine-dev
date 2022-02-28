@@ -12,10 +12,10 @@ import {FaDiscord} from "@react-icons/all-files/fa/FaDiscord";
 import {FaInstagram} from "@react-icons/all-files/fa/FaInstagram";
 import {FaReddit} from "@react-icons/all-files/fa/FaReddit";
 import {FaTwitter} from "@react-icons/all-files/fa/FaTwitter";
-import {useTranslation} from "next-i18next";
+import {useTranslation} from "react-i18next";
 
 export default function Footer() {
-        const { t } = useTranslation('footer');
+    const { t } = useTranslation('footer');
     const footerBackground = useColorModeValue("gray.100", "gray.900");
 
     return <Box as="footer" role="contentinfo" pos="absolute" bottom="0" w="100%" bg={footerBackground} p={3} py="12">
