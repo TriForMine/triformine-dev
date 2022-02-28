@@ -1,17 +1,18 @@
 import {Button, Icon} from '@chakra-ui/react'
-import {useRouter} from "next/router";
 import {FaLanguage} from "@react-icons/all-files/fa/FaLanguage";
-import Link from "next/link";
+import {Link, useMatches, useParams} from "remix";
 
 export const LanguageSwitch = (props: any) => {
-    const router = useRouter()
+    const { locale } = useParams();
+    if(!locale)
+        return <></>
+    const matches = useMatches();
+
     return (
         <Link
-            href={router.pathname}
-            locale={router.locale === 'en' ? 'fr' : 'en'}
-            passHref
+            to={matches[1]?.pathname.replace(locale, locale === 'en' ? 'fr' : 'en')}
         >
-            <Button {...props} variant="ghost" aria-label="Change Language" leftIcon={<Icon as={FaLanguage} />}>{router.locale!.toUpperCase()}</Button>
+            <Button {...props} variant="ghost" aria-label="Change Language" leftIcon={<Icon as={FaLanguage} />}>{locale!.toUpperCase()}</Button>
         </Link>
     )
 }

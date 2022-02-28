@@ -2,30 +2,42 @@
   "name": "triformine-dev",
   "version": "0.1.0",
   "private": true,
+  "sideEffects": false,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start -p 7575",
-    "lint": "next lint"
+    "build": "cross-env NODE_ENV=production remix build",
+    "dev": "cross-env NODE_ENV=development remix dev",
+    "postinstall": "remix setup node",
+    "start": "cross-env NODE_ENV=production PORT=7575 remix-serve build"
   },
   "dependencies": {
-    "@chakra-ui/icons": "^1.1.1",
-    "@chakra-ui/react": "^1.7.4",
-    "@emotion/react": "^11.7.1",
-    "@emotion/styled": "^11.6.0",
+    "@chakra-ui/icons": "^1.1.7",
+    "@chakra-ui/react": "^1.8.5",
+    "@emotion/react": "^11.8.1",
+    "@emotion/server": "^11.4.0",
+    "@emotion/styled": "^11.8.1",
     "@react-icons/all-files": "^4.1.0",
-    "framer-motion": "^6.2.1",
-    "next": "12.0.8",
-    "next-i18next": "^10.2.0",
-    "next-seo": "^4.29.0",
+    "@remix-run/react": "^1.2.2",
+    "@remix-run/serve": "^1.2.2",
+    "accept-language-parser": "^1.5.0",
+    "cross-env": "^7.0.3",
+    "framer-motion": "^6.2.8",
+    "i18next": "^21.6.12",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "react-i18next": "^11.15.5",
+    "remix": "^1.2.2",
+    "remix-i18next": "^2.2.0"
   },
   "devDependencies": {
-    "@types/react": "17.0.38",
-    "eslint": "8.7.0",
-    "eslint-config-next": "12.0.8",
-    "npm-check-updates": "^12.2.0",
+    "@remix-run/dev": "^1.2.2",
+    "@types/react": "17.0.39",
+    "@types/react-dom": "^17.0.11",
+    "eslint": "8.10.0",
+    "eslint-config-next": "12.1.0",
+    "npm-check-updates": "^12.5.0",
     "typescript": "4.5.5"
+  },
+  "engines": {
+    "node": ">=14"
   }
 }

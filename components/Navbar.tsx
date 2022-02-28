@@ -8,20 +8,21 @@ import {NavbarButton} from "./NavbarButton";
 import {DarkModeSwitch} from "./DarkModeSwitch";
 import {CloseIcon, HamburgerIcon} from "@chakra-ui/icons";
 import {useEffect, useState} from "react";
-import {useRouter} from "next/router";
-import {useTranslation} from "next-i18next";
 import {LanguageSwitch} from "./LanguageSwitch";
+import {useTranslation} from "react-i18next";
+import {useLocation} from "remix";
 
 const Navbar = () => {
+    let location = useLocation();
+
     const { t } = useTranslation('navbar');
-    const router = useRouter();
     const [display, changeDisplay] = useState('none');
     const activeColor = useColorModeValue("gray.50", "gray.900");
     const navbarBackground = useColorModeValue("gray.100", "gray.900");
 
     useEffect(() => {
         changeDisplay('none')
-    }, [router]);
+    }, [location]);
 
     return <Flex>
         <Box pos="absolute" top="0" left="0" w="100%" height="56px" bg={navbarBackground}>

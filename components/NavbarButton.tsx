@@ -2,19 +2,18 @@
 
 import {Button, useColorModeValue} from "@chakra-ui/react";
 import { chakra } from "@chakra-ui/react"
-import NextLink from "next/link";
-import {useRouter} from "next/router";
 import {forwardRef, ReactElement} from "react";
 import {MouseEventHandler} from "react";
+import {NavLink} from "remix";
+import {LocaleLink} from "./LocaleLink";
 
-const NavbarButtonRaw = forwardRef((props: {name: string, href?: string, className?: string, onClick?: MouseEventHandler | undefined, rightIcon?: ReactElement}, ref) => {
-    const { asPath } = useRouter();
+const NavbarButtonRaw = forwardRef((props: {name: string, href: string, className?: string, onClick?: MouseEventHandler | undefined, rightIcon?: ReactElement}, ref) => {
     const activeColor = useColorModeValue("black.500", "cyan.200");
     const nonActiveColor = useColorModeValue("gray.300", "gray.500");
 
-
     const button = (
-        <Button // @ts-ignore
+        <Button
+            // @ts-ignore
             ref={ref}
             variant="ghost"
             aria-label={props.name}
@@ -22,7 +21,6 @@ const NavbarButtonRaw = forwardRef((props: {name: string, href?: string, classNa
             w="100%"
             size="md"
             borderBottom="1px"
-            borderColor={asPath.split('?')[0] === props.href ? activeColor : nonActiveColor}
             borderRadius="0px"
             {...(props.href ? {as: "a"} : {})}
             onClick={props.onClick}
@@ -30,7 +28,14 @@ const NavbarButtonRaw = forwardRef((props: {name: string, href?: string, classNa
         >{props.name}</Button>
     );
 
-    return props.href ? <NextLink href={props.href} passHref>{button}</NextLink> : button;
+    return props.href ? <LocaleLink style={({ isActive }) => {
+        return isActive ? {
+            borderColor: activeColor
+        } : {
+            borderColor: nonActiveColor
+        }
+    }
+    } to={props.href}>{button}</LocaleLink> : button;
 });
 
 export const NavbarButton = chakra(NavbarButtonRaw);
