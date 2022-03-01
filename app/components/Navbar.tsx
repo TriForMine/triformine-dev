@@ -10,7 +10,8 @@ import {CloseIcon, HamburgerIcon} from "@chakra-ui/icons";
 import {useEffect, useState} from "react";
 import {LanguageSwitch} from "./LanguageSwitch";
 import {useTranslation} from "react-i18next";
-import {useLocation} from "remix";
+import {json, LoaderFunction, useLocation} from "remix";
+import { i18n } from "~/i18n.server";
 
 const Navbar = () => {
     let location = useLocation();

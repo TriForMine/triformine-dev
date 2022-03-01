@@ -11,7 +11,9 @@ const NavbarButtonRaw = forwardRef((props: {name: string, href: string, classNam
     const activeColor = useColorModeValue("black.500", "cyan.200");
     const nonActiveColor = useColorModeValue("gray.300", "gray.500");
 
-    const button = (
+    console.log(props.name);
+
+    return (
         <Button
             // @ts-ignore
             ref={ref}
@@ -24,18 +26,11 @@ const NavbarButtonRaw = forwardRef((props: {name: string, href: string, classNam
             borderRadius="0px"
             {...(props.href ? {as: "a"} : {})}
             onClick={props.onClick}
+            as={LocaleLink}
             rightIcon={props.rightIcon}
+            to={props.href}
         >{props.name}</Button>
     );
-
-    return props.href ? <LocaleLink style={({ isActive }) => {
-        return isActive ? {
-            borderColor: activeColor
-        } : {
-            borderColor: nonActiveColor
-        }
-    }
-    } to={props.href}>{button}</LocaleLink> : button;
 });
 
 export const NavbarButton = chakra(NavbarButtonRaw);

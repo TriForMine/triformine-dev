@@ -13,8 +13,8 @@ import { useRemixI18Next } from "remix-i18next";
 
 import {ColorModeScript, ChakraProvider, Box, Heading, Flex, extendTheme, ThemeConfig} from "@chakra-ui/react";
 import {i18n} from "~/i18n.server";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 export let loader: LoaderFunction = async ({ request }) => {
     let locale = await i18n.getLocale(request);
