@@ -1,10 +1,15 @@
-import {useColorMode, IconButton} from '@chakra-ui/react'
-import {MoonIcon, SunIcon} from "@chakra-ui/icons";
+import {IconButton, useTheme} from '@mui/material';
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
+import * as React from 'react';
+
+const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
 export const DarkModeSwitch = (props: any) => {
-    const { colorMode, toggleColorMode } = useColorMode()
-    const isDark = colorMode === 'dark'
+    const theme = useTheme();
+    const colorMode = React.useContext(ColorModeContext);
+
     return (
-        <IconButton {...props} variant="ghost" aria-label="Toggle Dark Mode" icon={isDark ? <SunIcon />: <MoonIcon />} onClick={toggleColorMode} />
+        <IconButton {...props} variant="ghost" aria-label="Toggle Dark Mode" onClick={colorMode.toggleColorMode}>{theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}</IconButton>
     )
 }

@@ -1,85 +1,70 @@
-import {
-    Box,
-    Flex,
-    IconButton,
-    useColorModeValue
-} from "@chakra-ui/react";
 import {NavbarButton} from "./NavbarButton";
 import {DarkModeSwitch} from "./DarkModeSwitch";
-import {CloseIcon, HamburgerIcon} from "@chakra-ui/icons";
 import {useEffect, useState} from "react";
 import {LanguageSwitch} from "./LanguageSwitch";
 import {useTranslation} from "react-i18next";
-import {json, LoaderFunction, useLocation} from "remix";
-import { i18n } from "~/i18n.server";
+import {useLocation} from "remix";
+import {AppBar, IconButton, Toolbar, Box, Stack, useMediaQuery, useTheme} from "@mui/material";
+import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
 
 const Navbar = () => {
     let location = useLocation();
+    const theme = useTheme();
 
     const { t } = useTranslation('navbar');
     const [display, changeDisplay] = useState('none');
-    const activeColor = useColorModeValue("gray.50", "gray.900");
-    const navbarBackground = useColorModeValue("gray.100", "gray.900");
+    const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
     useEffect(() => {
         changeDisplay('none')
     }, [location]);
 
-    return <Flex>
-        <Box pos="absolute" top="0" left="0" w="100%" height="56px" bg={navbarBackground}>
-        </Box>
-        <Flex
-            pos="absolute"
-            top="0"
-            left="1rem"
-        >
-            <Flex
-                align="center"
-                display={['none','none','flex','flex']}
-            >
-                <NavbarButton ml={2} my={2} name={t('home')} href="/"/>
-                <NavbarButton ml={2} my={2} name={t('projects')} href="/projects" />
-                <NavbarButton ml={2} my={2} name={t('contact')}  href="/contact" />
-            </Flex>
-        </Flex>
-        <Flex
-            pos="absolute"
-            top="0"
-            right="1rem"
-        >
-            <Flex align="center">
-                <IconButton my={2} onClick={() => changeDisplay('flex')} variant="ghost" display={['flex','flex','none','none']} aria-label={t('open')} size="lg" mr={2} icon={<HamburgerIcon/>}/>
-
-                <DarkModeSwitch my={2} />
-                <LanguageSwitch my={2} />
-            </Flex>
-        </Flex>
-        <Flex
-            w="100vw"
-            bgColor={activeColor}
-            zIndex={20}
-            h="100vh"
-            pos="fixed"
-            top="0"
-            left="0"
-            overflowY="auto"
-            flexDir="column"
-            display={display}
-        >
-            <Flex  justify="flex-end">
-                <IconButton onClick={() => changeDisplay('none')} variant="ghost" mt={2} mr={2} aria-label={t('close')} size="lg" icon={<CloseIcon />} />
-            </Flex>
-            <Flex
-                flexDir="column"
-                align="center"
-                mx={2}
-            >
+    return <AppBar>
+        <Toolbar sx={{ flexWrap: 'wrap' }}>
+            <Box sx={{display: isMobile ? 'none' : 'flex'}} component={"nav"}>
                 <NavbarButton name={t('home')} href="/"/>
                 <NavbarButton name={t('projects')} href="/projects" />
                 <NavbarButton name={t('contact')}  href="/contact" />
-            </Flex>
-        </Flex>
-    </Flex>
+            </Box>
+            <Box
+                position="absolute"
+                top="10px"
+                right="2rem"
+                alignItems={"center"}
+            >
+                <IconButton my="auto" sx={{display: isMobile ? 'inline-block' : 'none'}} onClick={() => changeDisplay('flex')} aria-label={t('open')}><MenuIcon/></IconButton>
+
+                <DarkModeSwitch my="auto" />
+                <LanguageSwitch my="auto" />
+            </Box>
+            <Stack
+                sx={{
+                    width: "100vw",
+                    height: "100vh",
+                    backgroundColor: 'black',
+                    zIndex: 20,
+                    position: 'fixed',
+                    top: 0,
+                    left: 0,
+                    overflowY: 'auto',
+                    display,
+                    px: 6
+                }}
+                direction="column"
+            >
+                <Box sx={{
+                    display: 'flex',
+                    justifyContent: 'flex-end'
+                }}>
+                    <IconButton onClick={() => changeDisplay('none')} aria-label={t('close')}><CloseIcon /></IconButton>
+                </Box>
+                <NavbarButton name={t('home')} href="/"/>
+                <NavbarButton name={t('projects')} href="/projects" />
+                <NavbarButton name={t('contact')}  href="/contact" />
+            </Stack>
+        </Toolbar>
+    </AppBar>
 }
 
 export default Navbar;

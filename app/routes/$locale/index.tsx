@@ -1,4 +1,3 @@
-import {VStack, Text, Box, Center, Heading, Divider, StackDivider, Stack, Progress, SimpleGrid, Icon} from "@chakra-ui/react";
 import {DiPhp} from "@react-icons/all-files/di/DiPhp";
 import {IconType} from "@react-icons/all-files";
 import {DiHtml5} from "@react-icons/all-files/di/DiHtml5";
@@ -21,20 +20,27 @@ import {SiDiscord} from "@react-icons/all-files/si/SiDiscord";
 import {SiBrave} from "@react-icons/all-files/si/SiBrave";
 import {i18n} from "~/i18n.server";
 import {json, LoaderFunction, MetaFunction, useLoaderData} from "remix";
-import {useTranslation} from "react-i18next";
+import {Divider, Grid, LinearProgress, Stack, SvgIcon, Typography} from "@mui/material";
+import Box from "@mui/material/Box";
 
-function Skill({name, color, value, icon}: {name: string, color: string, value: number, icon: IconType }) {
-    return <Box _hover={{boxShadow: "dark-lg"}} boxShadow="2xl" rounded="md" p={6} width="100%">
-        <Center>
-            <Heading size="lg" as="h3"><Icon w={8} h={8} as={icon}/> {name}</Heading>
-        </Center>
-        <Progress mt={3} colorScheme={color} value={value} />
-    </Box>
+function Skill({name, color, value, icon, software}: {name: string, color: "primary" | "secondary" | "info" | "error" | "success" | "warning" | "inherit", value: number, icon: IconType, software?: boolean }) {
+    return <Grid item xs={12} md={6} xl={software ? 4 : 3}>
+        <Box p={6} width="100%" sx={{
+            boxShadow: 3,
+            borderRadius: 4,
+            '&:hover': {
+                opacity: [0.9, 0.8, 0.7],
+            },
+        }}>
+            <Typography variant="h4" component="h3"><SvgIcon inheritViewBox fontSize='large' component={icon}/> {name}</Typography>
+            <LinearProgress variant="determinate" color={color} value={value} />
+        </Box>
+    </Grid>
 }
 
 export let loader: LoaderFunction = async (args) => {
     if (!args.params.locale)
-        throw new Error('Locale not specified.')
+        throw 'Locale not specified.'
 
     return json({
         i18n: await i18n.getTranslations(args.params.locale, ['home', 'footer', 'navbar']),
@@ -49,51 +55,49 @@ export default function Home() {
     const { i18n } = useLoaderData();
 
     return (
-        <VStack>
-            <Box p={5}>
-                <Center>
-                    <Heading as="h2">
-                        TriForMine
-                    </Heading>
-                </Center>
-                <Text textAlign="center" marginTop={5}>{i18n.home.introduction}</Text>
+        <Stack >
+            <Box p={5} pt={12}>
+                <Typography textAlign="center" variant="h2" component="h2">
+                    TriForMine
+                </Typography>
+                <Typography textAlign="center" mt={5}>{i18n.home.introduction}</Typography>
             </Box>
-            <Divider type="dashed" />
-            <VStack paddingX={3} width="100%" divider={<StackDivider />} spacing={16}>
+            <Divider  />
+            <Stack width="100%" spacing={16}>
                 <Stack width="100%" alignItems="center" justifyContent="center">
-                    <Heading textAlign="center" as="h2">
+                    <Typography pb={3} variant="h2" component="h2">
                         {i18n.home.skills}
-                    </Heading>
-                    <SimpleGrid py={3} columns={[1,2,3,4]} width="100%" spacing={16}>
-                        <Skill icon={DiHtml5} name="HTML" color="green" value={95} />
-                        <Skill icon={DiJavascript1} name="JavaScript" color="green" value={95} />
-                        <Skill icon={DiPhp} name="PHP" color="teal" value={75} />
-                        <Skill icon={SiTypescript} name="TypeScript" color="green" value={90} />
-                        <Skill icon={DiPython} name="Python" color="teal" value={75} />
-                        <Skill icon={DiRust} name="Rust" color="yellow" value={65} />
-                        <Skill icon={DiLinux} name="Linux" color="green" value={80} />
-                        <Skill icon={DiPostgresql} name="PostgreSQL" color="green" value={80} />
-                        <Skill icon={DiReact} name="React/NextJS" color="green" value={82} />
-                        <Skill icon={SiLua} name="Lua" color="teal" value={75} />
-                        <Skill icon={SiCplusplus} name="C++" color="orange" value={50} />
-                        <Skill icon={SiCsharp} name="C#" color="orange" value={50} />
-                        <Skill icon={DiJava} name="Java" color="purple" value={25} />
-                    </SimpleGrid>
+                    </Typography>
+                    <Grid container width="100%" spacing={3}>
+                        <Skill icon={DiHtml5} name="HTML" color="success" value={95} />
+                        <Skill icon={DiJavascript1} name="JavaScript" color="success" value={95} />
+                        <Skill icon={DiPhp} name="PHP" color="primary" value={75} />
+                        <Skill icon={SiTypescript} name="TypeScript" color="success" value={90} />
+                        <Skill icon={DiPython} name="Python" color="primary" value={75} />
+                        <Skill icon={DiRust} name="Rust" color="warning" value={65} />
+                        <Skill icon={DiLinux} name="Linux" color="success" value={80} />
+                        <Skill icon={DiPostgresql} name="PostgreSQL" color="success" value={80} />
+                        <Skill icon={DiReact} name="React" color="success" value={82} />
+                        <Skill icon={SiLua} name="Lua" color="primary" value={75} />
+                        <Skill icon={SiCplusplus} name="C++" color="info" value={50} />
+                        <Skill icon={SiCsharp} name="C#" color="info" value={50} />
+                        <Skill icon={DiJava} name="Java" color="error" value={25} />
+                    </Grid>
                 </Stack>
                 <Stack width="100%" alignItems="center" justifyContent="center">
-                    <Heading textAlign="center" as="h2">
+                    <Typography pb={3} variant="h2" component="h2">
                         {i18n.home.software}
-                    </Heading>
-                    <SimpleGrid py={3} columns={[1,2,3]} width="100%" spacing={16}>
-                        <Skill name="Intellij IDEA Ultimate" icon={SiIntellijidea} color="green" value={100} />
-                        <Skill name="VSCode" icon={SiVisualstudio} color="green" value={85} />
-                        <Skill name="Unity 3D" icon={SiUnity} color="orange" value={65} />
-                        <Skill name="Unreal Engine" icon={SiUnrealengine} color="orange" value={65} />
-                        <Skill name="Discord" icon={SiDiscord} color="green" value={100} />
-                        <Skill name="Brave" icon={SiBrave} color="green" value={100} />
-                    </SimpleGrid>
+                    </Typography>
+                    <Grid container width="100%" spacing={3}>
+                        <Skill name="Intellij IDEA Ultimate" icon={SiIntellijidea} color="success" value={100} software />
+                        <Skill name="VSCode" icon={SiVisualstudio} color="success" value={85} software />
+                        <Skill name="Unity 3D" icon={SiUnity} color="info" value={65} software />
+                        <Skill name="Unreal Engine" icon={SiUnrealengine} color="info" value={65} software />
+                        <Skill name="Discord" icon={SiDiscord} color="success" value={100} software />
+                        <Skill name="Brave" icon={SiBrave} color="success" value={100} software />
+                    </Grid>
                 </Stack>
-            </VStack>
-        </VStack>
+            </Stack>
+        </Stack>
     )
 }

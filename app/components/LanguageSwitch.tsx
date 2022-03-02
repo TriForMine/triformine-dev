@@ -1,8 +1,9 @@
-import {Button, Icon} from '@chakra-ui/react'
+import {Button, useTheme} from '@mui/material'
 import {FaLanguage} from "@react-icons/all-files/fa/FaLanguage";
 import {Link, useMatches, useParams} from "remix";
 
 export const LanguageSwitch = (props: any) => {
+    const theme = useTheme();
     const { locale } = useParams();
     if(!locale)
         return <></>
@@ -12,7 +13,7 @@ export const LanguageSwitch = (props: any) => {
         <Link
             to={matches[1]?.pathname.replace(locale, locale === 'en' ? 'fr' : 'en')}
         >
-            <Button {...props} variant="ghost" aria-label="Change Language" leftIcon={<Icon as={FaLanguage} />}>{locale!.toUpperCase()}</Button>
+            <Button sx={{color: theme.palette.text.primary}} {...props} variant="text" aria-label="Change Language" startIcon={<FaLanguage />}>{locale!.toUpperCase()}</Button>
         </Link>
     )
 }

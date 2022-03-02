@@ -1,19 +1,20 @@
-import {LinkBox, Link, LinkOverlay, Center, Heading, Image, SimpleGrid, VStack} from "@chakra-ui/react";
-import {useTranslation} from "react-i18next";
 import {json, LoaderFunction, MetaFunction, useLoaderData} from "remix";
 import {i18n} from "~/i18n.server";
+import {Box, Grid, Link, Stack, Typography} from "@mui/material";
 
 const Project = ({name, image, link}: {name: string, image: string, link: string }) => {
-    return <LinkBox _hover={{boxShadow: "dark-lg"}} boxShadow="2xl" rounded="md" p={6} width="100%">
-        <Center>
-            <Image src={image} alt={name} objectFit="cover" rounded="md"/>
-        </Center>
-        <Center>
-                <LinkOverlay href={link} isExternal>
-                    <Heading my={3} size="lg" as="h3">{name}</Heading>
-                </LinkOverlay>
-        </Center>
-    </LinkBox>
+    return <Grid item xs={12} md={6} xl={4}>
+        <Link href={link} target="_blank">
+            <Box sx={{boxShadow: 3, borderRadius: 2}} p={6} width="100%">
+                <Box sx={{textAlign: 'center'}}>
+                    <img width='100%' src={image} alt={name} />
+                </Box>
+                <Box sx={{textAlign: 'center'}}>
+                    <Typography my={3} variant="h4" component="h3">{name}</Typography>
+                </Box>
+            </Box>
+        </Link>
+    </Grid>
 }
 
 export let loader: LoaderFunction = async (args) => {
@@ -36,17 +37,15 @@ export default function Projects () {
     const { i18n } = useLoaderData();
 
     return <>
-        <VStack>
-            <Center>
-                <Heading as="h2">
-                    {i18n.projects.projects}
-                </Heading>
-            </Center>
-            <SimpleGrid px={4} py={3} columns={[1,2,3,4]} width="100%" spacing={16}>
+        <Stack pt={12}>
+            <Typography textAlign="center" component="h2" variant="h3">
+                {i18n.projects.projects}
+            </Typography>
+            <Grid container pt={3} width="100%" spacing={16}>
                 <Project name="Isekai Maid" link="https://www.isekaimaid.xyz/" image="/isekai-maid.png" />
                 <Project name="Kwik" link="https://github.com/TriForMine/kwik" image="/deno-logo.svg" />
                 <Project name="Voxel World Rust" link="https://github.com/TriForMine/voxel-world-rust" image="/rust.png" />
-            </SimpleGrid>
-        </VStack>
+            </Grid>
+        </Stack>
     </>
 }
