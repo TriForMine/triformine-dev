@@ -14,8 +14,7 @@ import {i18n} from "~/i18n.server";
 import {withEmotionCache} from "@emotion/react";
 import ClientStyleContext from "~/src/ClientStyleContext";
 import React from "react";
-import useEnhancedEffect from "@mui/utils/useEnhancedEffect";
-import {useMediaQuery} from "@mui/material";
+import {useMediaQuery, unstable_useEnhancedEffect as useEnhancedEffect} from "@mui/material";
 import {createTheme} from "@mui/material/styles";
 import { useSetupTranslations } from "remix-i18next";
 
@@ -91,6 +90,7 @@ const Document = withEmotionCache(({ children, title }: DocumentProps, emotionCa
                 href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
             />
             <meta name="emotion-insertion-point" content="emotion-insertion-point" />
+	    <script async defer data-website-id="a595c156-ce6d-4045-a0d9-22c5b4c8eeb7" src="https://umami.triformine.dev/umami.js"></script>
         </head>
         <body>
         {children}
