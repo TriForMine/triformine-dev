@@ -728,6 +728,15 @@
     "@mui/utils" "^5.7.0"
     prop-types "^15.8.1"
 
+"@mui/private-theming@^5.8.0":
+  version "5.8.0"
+  resolved "https://registry.yarnpkg.com/@mui/private-theming/-/private-theming-5.8.0.tgz#7d927e7e12616dc10b0dcbe665df2c00ed859796"
+  integrity sha512-MjRAneTmCKLR9u2S4jtjLUe6gpHxlbb4g2bqpDJ2PdwlvwsWIUzbc/gVB4dvccljXeWxr5G2M/Co2blXisvFIw==
+  dependencies:
+    "@babel/runtime" "^7.17.2"
+    "@mui/utils" "^5.8.0"
+    prop-types "^15.8.1"
+
 "@mui/styled-engine@^5.7.0":
   version "5.7.0"
   resolved "https://registry.yarnpkg.com/@mui/styled-engine/-/styled-engine-5.7.0.tgz#59e4937cebab5c72b080914c7071a41489f6f416"
@@ -737,18 +746,18 @@
     "@emotion/cache" "^11.7.1"
     prop-types "^15.8.1"
 
-"@mui/styles@^5.7.0":
-  version "5.7.0"
-  resolved "https://registry.yarnpkg.com/@mui/styles/-/styles-5.7.0.tgz#797ad5ce9768dc5646a5a41b2cff939a0e84e735"
-  integrity sha512-WwDxn2qGd35huodKsuUjOvH6xSlAQFqJZnSdqHKxgC9vOwDVQo1DmS3zASPvMVm0/wqXVcbkwjF8RFW1IClbAA==
+"@mui/styles@^5.8.0":
+  version "5.8.3"
+  resolved "https://registry.yarnpkg.com/@mui/styles/-/styles-5.8.3.tgz#2003084a5ad793ab8067efa9b411a6ef4cf3a57e"
+  integrity sha512-O0FGaKYajtIC2H42bhh6CvqQsH5WVodsYx3joga+heojta2D2TRIOxtPX4v2VG8D3TvhcggrSsERF6S9sAvl3Q==
   dependencies:
     "@babel/runtime" "^7.17.2"
     "@emotion/hash" "^0.8.0"
-    "@mui/private-theming" "^5.7.0"
+    "@mui/private-theming" "^5.8.0"
     "@mui/types" "^7.1.3"
-    "@mui/utils" "^5.7.0"
+    "@mui/utils" "^5.8.0"
     clsx "^1.1.1"
-    csstype "^3.0.11"
+    csstype "^3.1.0"
     hoist-non-react-statics "^3.3.2"
     jss "^10.8.2"
     jss-plugin-camel-case "^10.8.2"
@@ -783,6 +792,17 @@
   version "5.7.0"
   resolved "https://registry.yarnpkg.com/@mui/utils/-/utils-5.7.0.tgz#7e96df6b871f4d3da13f26a623d73ddf9a11b19c"
   integrity sha512-uWpDIEXl7bWYkJwKQQ4Rdhc2dcotVETRYuLy29V6qLYZyAbs7AMKwDDz0XKy3RMNmU7S2R/jEeSb9xjXscQUHQ==
+  dependencies:
+    "@babel/runtime" "^7.17.2"
+    "@types/prop-types" "^15.7.5"
+    "@types/react-is" "^16.7.1 || ^17.0.0"
+    prop-types "^15.8.1"
+    react-is "^17.0.2"
+
+"@mui/utils@^5.8.0":
+  version "5.8.0"
+  resolved "https://registry.yarnpkg.com/@mui/utils/-/utils-5.8.0.tgz#4b1d19cbcf70773283375e763b7b3552b84cb58f"
+  integrity sha512-7LgUtCvz78676iC0wpTH7HizMdCrTphhBmRWimIMFrp5Ph6JbDFVuKS1CwYnWWxRyYKL0QzXrDL0lptAU90EXg==
   dependencies:
     "@babel/runtime" "^7.17.2"
     "@types/prop-types" "^15.7.5"
@@ -2320,6 +2340,11 @@ csstype@^3.0.2:
   version "3.0.8"
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.0.8.tgz#d2266a792729fb227cd216fb572f43728e1ad340"
   integrity sha512-jXKhWqXPmlUeoQnF/EhTtTl4C9SnrxSH/jZUih3jmO6lBKr99rP3/+FmrMj4EFpOXzMtXHAZkd3x0E6h6Fgflw==
+
+csstype@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.1.0.tgz#4ddcac3718d787cf9df0d1b7d15033925c8f29f2"
+  integrity sha512-uX1KG+x9h5hIJsaKR9xHUeUraxf8IODOwq9JLNPq6BwB04a/xgpq3rcx47l5BZu5zBPlgD342tdke3Hom/nJRA==
 
 damerau-levenshtein@^1.0.7:
   version "1.0.8"
