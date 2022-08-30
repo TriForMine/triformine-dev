@@ -4120,6 +4120,11 @@ internal-slot@^1.0.3:
     has "^1.0.3"
     side-channel "^1.0.4"
 
+intl-parse-accept-language@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/intl-parse-accept-language/-/intl-parse-accept-language-1.0.0.tgz#204d1bc0b13c5baea7775f5eeb95bef2b795675c"
+  integrity sha512-YFMSV91JNBOSjw1cOfw2tup6hDP7mkz+2AUV7W1L1AM6ntgI75qC1ZeFpjPGMrWp+upmBRTX2fJWQ8c7jsUWpA==
+
 ip@^1.1.5:
   version "1.1.5"
   resolved "https://registry.yarnpkg.com/ip/-/ip-1.1.5.tgz#bdded70114290828c0a039e72ef25f5aaec4354a"
@@ -4910,6 +4915,11 @@ lru-cache@^6.0.0:
   integrity sha512-Jo6dJ04CmSjuznwJSS3pUeWmd/H0ffTlkXXgwZi+eq1UCmqQwCh+eLsYOYCwY991i2Fah4h1BEMCx4qThGbsiA==
   dependencies:
     yallist "^4.0.0"
+
+lru-cache@^7.10.0:
+  version "7.14.0"
+  resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-7.14.0.tgz#21be64954a4680e303a09e9468f880b98a0b3c7f"
+  integrity sha512-EIRtP1GrSJny0dqb50QXRUNBxHJhcpxHC++M5tD7RYbvLLn5KVWKsbyswSSqDuU15UFi3bgTQIY8nhDMeF6aDQ==
 
 lru-cache@^7.3.1:
   version "7.4.0"
@@ -6740,13 +6750,14 @@ remark-rehype@^9.0.0:
     mdast-util-to-hast "^11.0.0"
     unified "^10.0.0"
 
-remix-i18next@3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/remix-i18next/-/remix-i18next-3.0.0.tgz#449090d5406ad52c2e1e13c32df74fec3c4319f0"
-  integrity sha512-eGYyTKFYlIoHsZMotDO6dVsKiUiasRTt/+SMbFLKWfV7k71MdZ1ll0zjzdw5sWdj2U5elNBgfBkGciMx37CEuQ==
+remix-i18next@4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/remix-i18next/-/remix-i18next-4.1.1.tgz#7d4b834f08258303a1bd88c0ca3b6522b33fb440"
+  integrity sha512-uyHzycfyUPrqA039UGSpfC/5xUMidmxp+b8oTTl9/ghB75tLR24XuRv28eJzS1HeautJI4l/v/iC8L3cVnZK7A==
   dependencies:
     accept-language-parser "^1.5.0"
-    lru-cache "^6.0.0"
+    intl-parse-accept-language "^1.0.0"
+    lru-cache "^7.10.0"
     use-consistent-value "^1.0.0"
 
 remix@1.4.3:
