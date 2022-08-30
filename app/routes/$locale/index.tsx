@@ -18,10 +18,11 @@ import {SiUnity} from "@react-icons/all-files/si/SiUnity";
 import {SiUnrealengine} from "@react-icons/all-files/si/SiUnrealengine";
 import {SiDiscord} from "@react-icons/all-files/si/SiDiscord";
 import {SiBrave} from "@react-icons/all-files/si/SiBrave";
-import {i18n} from "~/i18n.server";
 import {json, LoaderFunction, MetaFunction, useLoaderData} from "remix";
 import {Divider, Grid, LinearProgress, Stack, SvgIcon, Typography} from "@mui/material";
 import Box from "@mui/material/Box";
+import {i18next} from "~/i18n.server";
+import {useTranslation} from "react-i18next";
 
 function Skill({name, color, value, icon, software}: {name: string, color: "primary" | "secondary" | "info" | "error" | "success" | "warning" | "inherit", value: number, icon: IconType, software?: boolean }) {
     return <Grid item xs={12} md={6} xl={software ? 4 : 3}>
@@ -38,12 +39,14 @@ function Skill({name, color, value, icon, software}: {name: string, color: "prim
     </Grid>
 }
 
-export let loader: LoaderFunction = async (args) => {
-    if (!args.params.locale)
-        throw 'Locale not specified.'
+export let loader: LoaderFunction = async ({ request }) => {
+    const lng = request.url.split("/")[3];
+    const t = await i18next.getFixedT(lng, ['home', 'footer', 'navbar'])
 
     return json({
-        i18n: await i18n.getTranslations(args.params.locale, ['home', 'footer', 'navbar']),
+        introduction: t('introduction'),
+        skills: t('skills'),
+        software: t('software')
     });
 };
 
@@ -52,7 +55,7 @@ export const meta: MetaFunction = () => ({
 });
 
 export default function Home() {
-    const { i18n } = useLoaderData();
+    const data = useLoaderData();
 
     return (
         <Stack >
@@ -60,13 +63,13 @@ export default function Home() {
                 <Typography textAlign="center" variant="h2" component="h2">
                     TriForMine
                 </Typography>
-                <Typography textAlign="center" mt={5}>{i18n.home.introduction}</Typography>
+                <Typography textAlign="center" mt={5}>{data.introduction}</Typography>
             </Box>
             <Divider  />
             <Stack width="100%" spacing={16}>
                 <Stack width="100%" alignItems="center" justifyContent="center">
                     <Typography pb={3} variant="h2" component="h2">
-                        {i18n.home.skills}
+                        {data.skills}
                     </Typography>
                     <Grid container width="100%" spacing={3}>
                         <Skill icon={DiHtml5} name="HTML" color="success" value={95} />
@@ -86,7 +89,7 @@ export default function Home() {
                 </Stack>
                 <Stack width="100%" alignItems="center" justifyContent="center">
                     <Typography pb={3} variant="h2" component="h2">
-                        {i18n.home.software}
+                        {data.software}
                     </Typography>
                     <Grid container width="100%" spacing={3}>
                         <Skill name="Intellij IDEA Ultimate" icon={SiIntellijidea} color="success" value={100} software />

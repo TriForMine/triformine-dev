@@ -1,6 +1,7 @@
 import {json, LoaderFunction, MetaFunction, useLoaderData} from "remix";
-import {i18n} from "~/i18n.server";
 import {Box, Grid, Link, Stack, Typography} from "@mui/material";
+import {i18next} from "~/i18n.server";
+import {useTranslation} from "react-i18next";
 
 const Project = ({name, image, link}: {name: string, image: string, link: string }) => {
     return <Grid item xs={12} md={6} xl={4}>
@@ -17,29 +18,31 @@ const Project = ({name, image, link}: {name: string, image: string, link: string
     </Grid>
 }
 
-export let loader: LoaderFunction = async (args) => {
-    if (!args.params.locale)
-        throw new Error('Locale not specified.')
+export let loader: LoaderFunction = async ({ request }) => {
+    const lng = request.url.split("/")[3];
+    const t = await i18next.getFixedT(lng, ['projects', 'footer', 'navbar'])
 
     return json({
-        i18n: await i18n.getTranslations(args.params.locale, ['projects', 'footer', 'navbar']),
+        title: t('title'),
+        description: t('description'),
+        projects: t('projects')
     });
 };
 
 export const meta: MetaFunction = ({data}) => {
     return {
-        title: data.i18n.projects.title + ' - TriForMine',
-        description: data.i18n.projects.description
+        title: data.title + ' - TriForMine',
+        description: data.description
     }
 };
 
 export default function Projects () {
-    const { i18n } = useLoaderData();
+    const data = useLoaderData();
 
     return <>
         <Stack pt={12}>
             <Typography textAlign="center" component="h2" variant="h3">
-                {i18n.projects.projects}
+                {data.projects}
             </Typography>
             <Grid container pt={3} width="100%" spacing={16}>
                 <Project name="Isekai Maid" link="https://www.isekaimaid.xyz/" image="/isekai-maid.png" />

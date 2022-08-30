@@ -10,17 +10,40 @@ import {
     useCatch, useLoaderData, MetaFunction,
 } from "remix";
 import Layout from './src/Layout';
-import {i18n} from "~/i18n.server";
 import {withEmotionCache} from "@emotion/react";
 import ClientStyleContext from "~/src/ClientStyleContext";
 import React from "react";
 import {useMediaQuery, unstable_useEnhancedEffect as useEnhancedEffect} from "@mui/material";
 import {createTheme} from "@mui/material/styles";
-import { useSetupTranslations } from "remix-i18next";
+import { useChangeLanguage } from "remix-i18next";
+import { useTranslation } from "react-i18next";
+import {i18next} from "~/i18n.server";
 
-export let loader: LoaderFunction = async ({ request }) => {
-    let locale = await i18n.getLocale(request);
-    return json({ locale });
+type LoaderData = {
+    locale: string,
+    home: string,
+    projects: string,
+    contact: string
+};
+
+export let loader: LoaderFunction = async ({ request: {url} }) => {
+    const locale = url.split("/")[3];
+    const t = await i18next.getFixedT(locale, 'navbar');
+
+    return json<LoaderData>({
+        locale,
+        home: t('home'),
+        projects: t('projects'),
+        contact: t('contact'),
+    });
+};
+
+export let handle = {
+    // In the handle export, we can add a i18n key with namespaces our route
+    // will need to load. This key can be a single string or an array of strings.
+    // TIP: In most cases, you should set this to your defaultNS from your i18n config
+    // or if you did not set one, set it to the i18next default namespace "translation"
+    i18n: "common",
 };
 
 export const meta: MetaFunction = () => {
@@ -44,7 +67,7 @@ interface DocumentProps {
     title?: string;
 }
 
-const Document = withEmotionCache(({ children, title }: DocumentProps, emotionCache) => {
+const Document = withEmotionCache(({ children, title, locale, i18n }: DocumentProps & { locale?: any, i18n?: any}, emotionCache) => {
     const clientStyleData = React.useContext(ClientStyleContext);
     const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
 
@@ -75,7 +98,7 @@ const Document = withEmotionCache(({ children, title }: DocumentProps, emotionCa
     }, []);
 
     return (
-        <html lang="en">
+        <html lang={locale || "en"} dir={i18n?.dir() || "ltr"}>
         <head>
             <meta charSet="utf-8" />
             <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -90,7 +113,7 @@ const Document = withEmotionCache(({ children, title }: DocumentProps, emotionCa
                 href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
             />
             <meta name="emotion-insertion-point" content="emotion-insertion-point" />
-	    <script async defer data-website-id="a595c156-ce6d-4045-a0d9-22c5b4c8eeb7" src="https://umami.triformine.dev/umami.js"></script>
+	    <script async defer data-website-id="a595c156-ce6d-4045-a0d9-22c5b4c8eeb7" src="https://umami.triformine.dev/triformine-track.js"></script>
         </head>
         <body>
         {children}
@@ -103,11 +126,17 @@ const Document = withEmotionCache(({ children, title }: DocumentProps, emotionCa
 });
 
 export default function App() {
-    let { locale } = useLoaderData<{ locale: string }>();
-    useSetupTranslations(locale);
+    let { locale } = useLoaderData<LoaderData>();
+    let { i18n } = useTranslation();
+
+    // This hook will change the i18n instance language to the current locale
+    // detected by the loader, this way, when we do something to change the
+    // language, this locale will change and i18next will load the correct
+    // translation files
+    useChangeLanguage(locale);
 
     return (
-        <Document>
+        <Document locale={locale} i18n={i18n}>
             <Layout>
                 <Outlet />
             </Layout>
@@ -125,8 +154,6 @@ export function ErrorBoundary({ error }: { error: Error }) {
                 <div>
                     <h1>There was an error</h1>
                     <p>{error.message}</p>
-                    <hr />
-                    <p>Hey, developer, you should replace this with what you want your users to see.</p>
                 </div>
             </Layout>
         </Document>

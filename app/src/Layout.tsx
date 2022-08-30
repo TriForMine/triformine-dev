@@ -3,6 +3,7 @@ import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Footer from "~/components/Footer";
 import Navbar from "~/components/Navbar";
+import {useLoaderData} from "remix";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
     return (

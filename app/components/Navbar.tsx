@@ -35,7 +35,10 @@ const Navbar = () => {
             >
                 <IconButton my="auto" sx={{display: isMobile ? 'inline-block' : 'none'}} onClick={() => changeDisplay('flex')} aria-label={t('open')}><MenuIcon/></IconButton>
 
-                <DarkModeSwitch my="auto" />
+                {
+                    // Disabled until mui works with remix
+                    //<DarkModeSwitch my="auto"/>
+                }
                 <LanguageSwitch my="auto" />
             </Box>
             <Stack

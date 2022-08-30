@@ -13,6 +13,10 @@ import createEmotionServer from '@emotion/server/create-instance';
 import {getRecommendedLocale} from "~/helpers/i18n";
 import {createInstance} from "i18next";
 import {initReactI18next, I18nextProvider} from "react-i18next";
+import {i18next} from "~/i18n.server";
+import Backend from "i18next-fs-backend";
+import i18n from "~/i18n";
+import {resolve} from "node:path";
 
 export default async function handleRequest(
     request: Request,
@@ -45,22 +49,33 @@ export default async function handleRequest(
         });
     }
 
-    // Here you also ned to initialize i18next using initReactI18next, you should
-    // use the same configuration as in your client side.
-    let i18n = createInstance();
-    await i18n.use(initReactI18next).init({
-        supportedLngs: ["en", "es"],
-        defaultNS: "common",
-        fallbackLng: "en",
-        react: { useSuspense: false },
-    });
+    // First, we create a new instance of i18next so every request will have a
+    // completely unique instance and not share any state
+    let instance = createInstance();
+
+    // Then we could detect locale from the request
+    const lng = url.pathname.split("/")[1];
+    // And here we detect what namespaces the routes about to render want to use
+    let ns = i18next.getRouteNamespaces(remixContext);
+
+    await instance
+        .use(initReactI18next) // Tell our instance to use react-i18next
+        .use(Backend) // Setup our backend
+        .init({
+            ...i18n, // spread the configuration
+            lng, // The locale we detected above
+            ns, // The namespaces the routes about to render wants to use
+            backend: {
+                loadPath: resolve("./public/locales/{{lng}}/{{ns}}.json"),
+            },
+        });
 
     const MuiRemixServer = () => (
         <CacheProvider value={cache}>
             <ThemeProvider theme={theme}>
                 {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
                 <CssBaseline />
-                <I18nextProvider i18n={i18n}>
+                <I18nextProvider i18n={instance}>
                     <RemixServer context={remixContext} url={request.url} />
                 </I18nextProvider>
             </ThemeProvider>
