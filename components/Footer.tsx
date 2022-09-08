@@ -1,4 +1,4 @@
-import {createStyles, Container, Group, ActionIcon, Title} from '@mantine/core';
+import {createStyles, Container, Group, ActionIcon, Title, Footer} from '@mantine/core';
 import {
 	IconBrandTwitter,
 	IconBrandInstagram,
@@ -10,7 +10,6 @@ import Link from "next/link";
 
 const useStyles = createStyles((theme) => ({
 	footer: {
-		marginTop: 120,
 		borderTop: `1px solid ${
 			theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[2]
 		}`,
@@ -35,11 +34,11 @@ const useStyles = createStyles((theme) => ({
 	},
 }));
 
-export default function Footer() {
+export default function CustomFooter() {
 	const { classes } = useStyles();
 
 	return (
-		<div className={classes.footer}>
+		<Footer height={80} className={classes.footer}>
 			<Container className={classes.inner}>
 				<Group spacing={0} className={classes.links} position="center" noWrap>
 					<Link href="https://github.com/triformine" target="_blank" passHref>
@@ -69,6 +68,6 @@ export default function Footer() {
 					</Link>
 				</Group>
 			</Container>
-		</div>
+		</Footer>
 	);
 }
