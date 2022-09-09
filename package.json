@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "analyze": "cross-env ANALYZE=true next build",
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "next-sitemap --config sitemap.config.js",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint ./ --ext js,jsx,ts,tsx"
   },
   "dependencies": {
     "@emotion/react": "^11.10.4",
@@ -17,21 +19,34 @@
     "@mantine/next": "^5.2.6",
     "@mantine/nprogress": "^5.2.6",
     "@mantine/spotlight": "^5.2.6",
+    "@next/bundle-analyzer": "^12.3.0",
     "@tabler/icons": "^1.94.0",
     "next": "12.2.5",
     "next-plugin-preact": "^3.0.7",
+    "next-seo": "^5.5.0",
+    "next-translate": "^1.5.0",
     "preact": "^10.10.6",
     "preact-render-to-string": "^5.2.3",
-    "react": "npm:@preact/compat",
-    "react-dom": "npm:@preact/compat",
-    "react-ssr-prepass": "npm:preact-ssr-prepass"
+    "react": "npm:@preact/compat@17.1.1",
+    "react-dom": "npm:@preact/compat@17.1.1",
+    "react-ssr-prepass": "npm:preact-ssr-prepass@1.2.0"
   },
   "devDependencies": {
     "@types/node": "18.7.16",
+    "@types/prettier": "^2",
     "@types/react": "18.0.18",
     "@types/react-dom": "18.0.6",
-    "eslint": "8.23.0",
-    "eslint-config-next": "12.2.5",
+    "@typescript-eslint/eslint-plugin": "^5.36.2",
+    "@typescript-eslint/parser": "^5.36.2",
+    "eslint": "^8.23.0",
+    "eslint-config-next": "^12.3.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.31.8",
+    "eslint-webpack-plugin": "^3.2.0",
+    "next-sitemap": "^3.1.21",
+    "prettier": "^2.7.1",
     "typescript": "4.8.2"
-  }
+  },
+  "packageManager": "yarn@4.0.0-rc.18"
 }
