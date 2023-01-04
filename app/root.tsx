@@ -113,7 +113,7 @@ const Document = withEmotionCache(({ children, title, locale, i18n }: DocumentPr
                 href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
             />
             <meta name="emotion-insertion-point" content="emotion-insertion-point" />
-	    <script async defer data-website-id="a595c156-ce6d-4045-a0d9-22c5b4c8eeb7" src="https://umami.triformine.dev/triformine-track.js"></script>
+	    <script async defer data-website-id="e1c73aae-fbca-4d13-a0e6-d55fc8fb1cf8" src="https://umami.triformine.dev/triformine-track.js"></script>
         </head>
         <body>
         {children}
