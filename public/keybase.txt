@@ -1,0 +1,93 @@
+==================================================================
+
+https://keybase.io/triformine
+
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://triformine.dev
+
+  * I am triformine (https://keybase.io/triformine) on keybase.
+
+  * I have a public key ASAuV8lni46LhgzEJ1fDwEhDr7XvopeYBLgmKU9IhIsykgo
+
+To do so, I am signing this object:
+
+{
+
+  "body": {
+
+    "key": {
+
+      "eldest_kid": "0120846bb84e04dcd78e4cbbb0532bc16247584b2d98fad2d19840ddd05315dc6e160a",
+
+      "host": "keybase.io",
+
+      "kid": "01202e57c9678b8e8b860cc42757c3c04843afb5efa2979804b826294f48848b32920a",
+
+      "uid": "e78daac1bd5d533be53e367cd0c48119",
+
+      "username": "triformine"
+
+    },
+
+    "merkle_root": {
+
+      "ctime": 1677752984,
+
+      "hash": "8f5b3c14d99cae7af18a7a54cbb1f9e7f6d2dca10c1659d5637317788718615d04071805e78d322f491614d127a1a30141850a9b1df91a0fcfe74f12ac994bf2",
+
+      "hash_meta": "4d4c31276695c5db523fbb68c39531a8a4a67d0121b6a6ce16b4f3d75bcc1ed0",
+
+      "seqno": 24133811
+
+    },
+
+    "service": {
+
+      "entropy": "1xohHSOBs8+AiyijN1gn+sBj",
+
+      "hostname": "triformine.dev",
+
+      "protocol": "https:"
+
+    },
+
+    "type": "web_service_binding",
+
+    "version": 2
+
+  },
+
+  "client": {
+
+    "name": "keybase.io go client",
+
+    "version": "6.0.1"
+
+  },
+
+  "ctime": 1677753087,
+
+  "expire_in": 504576000,
+
+  "prev": "60d4dc7fab5c35a8660a01b8450cd12cc095a7ea2af940a555899abfb74fba87",
+
+  "seqno": 39,
+
+  "tag": "signature"
+
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgLlfJZ4uOi4YMxCdXw8BIQ6+176KXmAS4JilPSISLMpIKp3BheWxvYWTESpcCJ8QgYNTcf6tcNahmCgG4RQzRLMCVp+oq+UClVYmav7dPuofEIJV9dNjKB08ZDp/ADhFDXTyFXI+4T2ivFUOrRyQtYt3aAgHCo3NpZ8RAlmsO8hKiiBrCnyFfKGw2iVxJJAr6INVjbiusFG8g6K2SibrJjThicpgOxFkVElgj+XXJjyrQkzwa9lPohekyDKhzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIIQWOvUgjHQAZ2E8L1kZ6IaSSeF26dzLy2i7VkgsK6xKo3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/triformine
+
+==================================================================
