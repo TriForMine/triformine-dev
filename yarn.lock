@@ -5290,7 +5290,12 @@ lru-cache@^6.0.0:
   dependencies:
     yallist "^4.0.0"
 
-lru-cache@^7.10.0, lru-cache@^7.4.4, lru-cache@^7.5.1, lru-cache@^7.7.1:
+lru-cache@^7.14.1:
+  version "7.18.3"
+  resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-7.18.3.tgz#f793896e0fd0e954a59dfdd82f0773808df6aa89"
+  integrity sha512-jumlc0BIUrS3qJGgIkWZsyfAM7NCWiBcCDhnd+3NNM5KbBmLTgHVfWBcg6W+rLUsIpzpERPsvwUP7CckAQSOoA==
+
+lru-cache@^7.4.4, lru-cache@^7.5.1, lru-cache@^7.7.1:
   version "7.14.0"
   resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-7.14.0.tgz#21be64954a4680e303a09e9468f880b98a0b3c7f"
   integrity sha512-EIRtP1GrSJny0dqb50QXRUNBxHJhcpxHC++M5tD7RYbvLLn5KVWKsbyswSSqDuU15UFi3bgTQIY8nhDMeF6aDQ==
@@ -7010,14 +7015,14 @@ remark-rehype@^9.0.0:
     mdast-util-to-hast "^11.0.0"
     unified "^10.0.0"
 
-remix-i18next@4.1.1:
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/remix-i18next/-/remix-i18next-4.1.1.tgz#7d4b834f08258303a1bd88c0ca3b6522b33fb440"
-  integrity sha512-uyHzycfyUPrqA039UGSpfC/5xUMidmxp+b8oTTl9/ghB75tLR24XuRv28eJzS1HeautJI4l/v/iC8L3cVnZK7A==
+remix-i18next@5.1.1:
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/remix-i18next/-/remix-i18next-5.1.1.tgz#a84ca8414c64910da11ae69e6f47afa3b157129b"
+  integrity sha512-2a9YnbTtF4Povyo396AvK+1pwP+FFclwkOeJtpFENIX+D/nBggoUy17ARq5q8maza7zplfdHWNODwNBEyMIEzg==
   dependencies:
     accept-language-parser "^1.5.0"
     intl-parse-accept-language "^1.0.0"
-    lru-cache "^7.10.0"
+    lru-cache "^7.14.1"
     use-consistent-value "^1.0.0"
 
 remix@1.7.0:

@@ -31,7 +31,7 @@
     "react-dom": "18.2.0",
     "react-i18next": "11.18.5",
     "remix": "1.7.0",
-    "remix-i18next": "4.1.1"
+    "remix-i18next": "5.1.1"
   },
   "devDependencies": {
     "@remix-run/dev": "1.7.0",
