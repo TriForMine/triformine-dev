@@ -1,17 +1,9 @@
 "use client"
 
 import { Link } from "@chakra-ui/next-js"
-import { Box, Button, Flex, Grid, Heading, Stack, Text, useColorMode, VStack, useBreakpointValue, Image, useColorModeValue, Icon, Container } from "@chakra-ui/react"
+import { Box, Button, Flex, Heading, Stack, Text, useColorMode, useBreakpointValue, useColorModeValue, Icon, Container } from "@chakra-ui/react"
 import { ReactElement } from "react";
 import { motion } from 'framer-motion'
-
-import {
-    FcAbout,
-    FcAssistant,
-    FcCollaboration,
-    FcDonate,
-    FcManager,
-} from 'react-icons/fc';
 
 import {
     SiTypescript,
