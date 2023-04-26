@@ -1,7 +1,7 @@
 "use client"
 
 import { Link } from "@chakra-ui/next-js"
-import { Box, Button, Flex, Heading, Stack, Text, useColorMode, useBreakpointValue, useColorModeValue, Icon, Container } from "@chakra-ui/react"
+import { Box, Button, Flex, Heading, Stack, Text, useBreakpointValue, useColorModeValue, Icon, Container } from "@chakra-ui/react"
 import { ReactElement } from "react";
 import { motion } from 'framer-motion'
 
@@ -66,7 +66,6 @@ const Card = ({ heading, icon, href, description }: CardProps) => {
 };
 
 export default function Page() {
-  const { toggleColorMode } = useColorMode()
   return (
       <Box textAlign="center" fontSize="xl">
           <Stack minH={'100vh'} direction={{ base: 'column', md: 'row' }}>
