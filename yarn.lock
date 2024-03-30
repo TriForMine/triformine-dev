@@ -2031,10 +2031,10 @@ for-each@^0.3.3:
   dependencies:
     is-callable "^1.1.3"
 
-framer-motion@^10.12.4:
-  version "10.12.4"
-  resolved "https://registry.npmjs.org/framer-motion/-/framer-motion-10.12.4.tgz"
-  integrity sha512-9gLtv8T6dui0tujHROR+VM3kdJyKiFCFiD94IQE+0OuX6LaIyXtdVpviokVdrHSb1giWhmmX4yzoucALMx6mtw==
+framer-motion@^11.0.0:
+  version "11.0.1"
+  resolved "https://registry.npmjs.org/framer-motion/-/framer-motion-11.0.1.tgz"
+  integrity sha512-uLmCP5RalSZYUDHRodulsvuoHXzFVtd6UqiTtC0wlrh16EzAe6ciT2/YpHmMF3ENN0os8PXO6zJhLyB2y4Lq6A==
   dependencies:
     tslib "^2.4.0"
   optionalDependencies:
