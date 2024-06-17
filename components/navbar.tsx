@@ -1,78 +1,117 @@
-"use client"
-
-import { ReactNode } from 'react';
 import {
-	Box,
-	Flex,
-	Avatar,
-	HStack,
-	IconButton,
-	Button,
-	Menu,
-	MenuButton,
-	MenuList,
-	MenuItem,
-	MenuDivider,
-	useDisclosure,
-	useColorModeValue,
-	Stack,
-} from '@chakra-ui/react';
-import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
-import { Link } from "@chakra-ui/next-js"
+  Navbar as NextUINavbar,
+  NavbarBrand,
+  NavbarContent,
+  NavbarItem,
+  NavbarMenu,
+  NavbarMenuItem,
+  NavbarMenuToggle,
+} from "@nextui-org/navbar";
+import { Button } from "@nextui-org/button";
+import { Link } from "@nextui-org/link";
+import { link as linkStyles } from "@nextui-org/theme";
+import NextLink from "next/link";
+import clsx from "clsx";
 
-const Links = [{label: 'About Me', url: '/'}, {label: 'Technologies', url: '/#technologies'}, {label: 'My Projects', url: '/#projects'}];
+import { siteConfig } from "@/config/site";
+import { ThemeSwitch } from "@/components/theme-switch";
+import {
+  GithubIcon,
+  HeartFilledIcon,
+  LinkedInIcons,
+  TwitterIcon,
+} from "@/components/icons";
 
-const NavLink = ({ children, url }: { children: ReactNode, url: string }) => (
-	<Link
-		px={2}
-		py={1}
-		rounded={'md'}
-		_hover={{
-			textDecoration: 'none',
-			bg: useColorModeValue('gray.200', 'gray.700'),
-		}}
-		href={url}>
-		{children}
-	</Link>
-);
+export const Navbar = () => {
+  return (
+    <NextUINavbar maxWidth="xl" position="sticky">
+      <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
+        <NavbarBrand as="li" className="gap-3 max-w-fit">
+          <NextLink className="flex justify-start items-center gap-1" href="/">
+            <p className="font-bold text-inherit">TriForMine</p>
+          </NextLink>
+        </NavbarBrand>
+        <ul className="hidden lg:flex gap-4 justify-start ml-2">
+          {siteConfig.navItems.map((item) => (
+            <NavbarItem key={item.href}>
+              <NextLink
+                className={clsx(
+                  linkStyles({ color: "foreground" }),
+                  "data-[active=true]:text-primary data-[active=true]:font-medium",
+                )}
+                color="foreground"
+                href={item.href}
+              >
+                {item.label}
+              </NextLink>
+            </NavbarItem>
+          ))}
+        </ul>
+      </NavbarContent>
 
-export default function Simple() {
-	const { isOpen, onOpen, onClose } = useDisclosure();
+      <NavbarContent
+        className="hidden sm:flex basis-1/5 sm:basis-full"
+        justify="end"
+      >
+        <NavbarItem className="hidden sm:flex gap-2">
+          <Link isExternal aria-label="Twitter" href={siteConfig.links.twitter}>
+            <TwitterIcon className="text-default-500" />
+          </Link>
+          <Link
+            isExternal
+            aria-label="Discord"
+            href={siteConfig.links.linkedin}
+          >
+            <LinkedInIcons className="text-default-500" />
+          </Link>
+          <Link isExternal aria-label="Github" href={siteConfig.links.github}>
+            <GithubIcon className="text-default-500" />
+          </Link>
+          <ThemeSwitch />
+        </NavbarItem>
+        <NavbarItem className="hidden md:flex">
+          <Button
+            isExternal
+            as={Link}
+            className="text-sm font-normal text-default-600 bg-default-100"
+            href={siteConfig.links.sponsor}
+            startContent={<HeartFilledIcon className="text-danger" />}
+            variant="flat"
+          >
+            Sponsor
+          </Button>
+        </NavbarItem>
+      </NavbarContent>
 
-	return (
-		<>
-			<Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
-				<Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
-					<IconButton
-						size={'md'}
-						icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
-						aria-label={'Open Menu'}
-						display={{ md: 'none' }}
-						onClick={isOpen ? onClose : onOpen}
-					/>
-					<HStack spacing={8} alignItems={'center'}>
-						<Box>TriForMine</Box>
-						<HStack
-							as={'nav'}
-							spacing={4}
-							display={{ base: 'none', md: 'flex' }}>
-							{Links.map((link) => (
-								<NavLink key={link.label} url={link.url}>{link.label}</NavLink>
-							))}
-						</HStack>
-					</HStack>
-				</Flex>
+      <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
+        <Link isExternal aria-label="Github" href={siteConfig.links.github}>
+          <GithubIcon className="text-default-500" />
+        </Link>
+        <ThemeSwitch />
+        <NavbarMenuToggle />
+      </NavbarContent>
 
-				{isOpen ? (
-					<Box pb={4} display={{ md: 'none' }}>
-						<Stack as={'nav'} spacing={4}>
-							{Links.map((link) => (
-								<NavLink key={link.label} url={link.url}>{link.label}</NavLink>
-							))}
-						</Stack>
-					</Box>
-				) : null}
-			</Box>
-		</>
-	);
-}
+      <NavbarMenu>
+        <div className="mx-4 mt-2 flex flex-col gap-2">
+          {siteConfig.navMenuItems.map((item, index) => (
+            <NavbarMenuItem key={`${item}-${index}`}>
+              <Link
+                color={
+                  index === 2
+                    ? "primary"
+                    : index === siteConfig.navMenuItems.length - 1
+                      ? "danger"
+                      : "foreground"
+                }
+                href="#"
+                size="lg"
+              >
+                {item.label}
+              </Link>
+            </NavbarMenuItem>
+          ))}
+        </div>
+      </NavbarMenu>
+    </NextUINavbar>
+  );
+};

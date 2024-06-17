@@ -1,23 +1,22 @@
-// app/providers.tsx
-'use client'
+"use client";
 
-import { CacheProvider } from '@chakra-ui/next-js'
-import { ChakraProvider } from '@chakra-ui/react'
-import { ColorModeScript } from "@chakra-ui/react"
+import * as React from "react";
+import { NextUIProvider } from "@nextui-org/system";
+import { useRouter } from "next/navigation";
+import { ThemeProvider as NextThemesProvider } from "next-themes";
+import { ThemeProviderProps } from "next-themes/dist/types";
 
-export function Providers({
-							  children
-						  }: {
-	children: React.ReactNode
-}) {
-	return (
-		<>
-			<ColorModeScript type="cookie" nonce="testing" />
-			<CacheProvider>
-				<ChakraProvider>
-					{children}
-				</ChakraProvider>
-			</CacheProvider>
-		</>
-	)
+export interface ProvidersProps {
+  children: React.ReactNode;
+  themeProps?: ThemeProviderProps;
+}
+
+export function Providers({ children, themeProps }: ProvidersProps) {
+  const router = useRouter();
+
+  return (
+    <NextUIProvider navigate={router.push}>
+      <NextThemesProvider {...themeProps}>{children}</NextThemesProvider>
+    </NextUIProvider>
+  );
 }
