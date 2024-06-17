@@ -3,7 +3,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 # I use Asia/Jakarta as my timezone, you can change it to your timezone
 RUN apt-get -y update && \
-  apt-get install -yq openssl git ca-certificates tzdata && \
+  apt-get install -yq openssl git ca-certificates tzdata wget && \
   ln -fs /usr/share/zoneinfo/Asia/Jakarta /etc/localtime && \
   dpkg-reconfigure -f noninteractive tzdata
 WORKDIR /app
