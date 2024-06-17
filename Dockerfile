@@ -24,8 +24,8 @@ RUN bun run build
 FROM node:20-slim AS runner
 WORKDIR /app
 
-# Install wget it's required for the healthcheck
-RUN apt-get -y update && apt-get install -y wget
+# Install wget and curl it's required for the healthcheck
+RUN apt-get -y update && apt-get install -y wget curl
 
 COPY .env /app/.env
 ENV NODE_ENV production
