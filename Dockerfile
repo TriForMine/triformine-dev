@@ -3,7 +3,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 # I use Asia/Jakarta as my timezone, you can change it to your timezone
 RUN apt-get -y update && \
-  apt-get install -yq openssl git ca-certificates tzdata wget && \
+  apt-get install -yq openssl git ca-certificates tzdata && \
   ln -fs /usr/share/zoneinfo/Asia/Jakarta /etc/localtime && \
   dpkg-reconfigure -f noninteractive tzdata
 WORKDIR /app
@@ -23,6 +23,9 @@ RUN bun run build
 # Production image, copy all the files and run next
 FROM node:20-slim AS runner
 WORKDIR /app
+
+# Install wget it's required for the healthcheck
+RUN apt-get -y update && apt-get install -y wget
 
 COPY .env /app/.env
 ENV NODE_ENV production
