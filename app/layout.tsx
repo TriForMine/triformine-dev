@@ -36,16 +36,45 @@ export default function RootLayout({
       <head />
       <body
         className={clsx(
-          "min-h-screen bg-background font-sans antialiased scroll-smooth",
+          "relative min-h-screen bg-gradient-to-br from-white via-blue-100 to-white dark:from-gray-900 dark:via-black dark:to-gray-900 text-gray-900 dark:text-white font-sans antialiased scroll-smooth transition-colors duration-500",
           fontSans.variable,
         )}
       >
+        {/* Dotted pattern overlay */}
+        <div
+          className="
+            pointer-events-none
+            absolute
+            inset-0
+            opacity-10
+            dark:opacity-20
+            transition-opacity duration-500
+            z-0
+          "
+          style={{
+            backgroundImage: `
+              radial-gradient(#ccc 1px, transparent 1px),
+              radial-gradient(#ccc 1px, transparent 1px)
+            `,
+            backgroundPosition: "0 0, 25px 25px",
+            backgroundSize: "50px 50px",
+          }}
+        />
+
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-          <div className="relative flex flex-col h-screen">
+          <div className="relative flex flex-col min-h-screen z-10">
+            {/* Enhanced Navbar */}
             <Navbar />
-            <main className="container mx-auto max-w-7xl px-6 flex-grow">
+
+            {/* Main Content */}
+            <main className="container mx-auto max-w-7xl px-6 flex-grow relative z-10">
               {children}
             </main>
+
+            {/* Optional Global Footer */}
+            <footer className="py-6 text-center text-sm text-gray-500 dark:text-gray-400 relative z-10">
+              © {new Date().getFullYear()} TriForMine. All rights reserved.
+            </footer>
           </div>
         </Providers>
       </body>

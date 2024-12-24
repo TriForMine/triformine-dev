@@ -1,3 +1,5 @@
+// components/primitives.ts
+
 import { tv } from "tailwind-variants";
 
 export const title = tv({
@@ -11,10 +13,11 @@ export const title = tv({
       green: "from-[#6FEE8D] to-[#17c964]",
       pink: "from-[#FF72E1] to-[#F54C7A]",
       foreground: "dark:from-[#FFFFFF] dark:to-[#4B4B4B]",
+      default: "from-gray-800 to-gray-600 dark:from-gray-200 dark:to-gray-400",
     },
     size: {
       sm: "text-3xl lg:text-4xl",
-      md: "text-[2.3rem] lg:text-5xl leading-9",
+      md: "text-2xl lg:text-5xl leading-9",
       lg: "text-4xl lg:text-6xl",
     },
     fullWidth: {
@@ -23,6 +26,7 @@ export const title = tv({
   },
   defaultVariants: {
     size: "md",
+    color: "default",
   },
   compoundVariants: [
     {
@@ -34,6 +38,7 @@ export const title = tv({
         "green",
         "pink",
         "foreground",
+        "default",
       ],
       class: "bg-clip-text text-transparent bg-gradient-to-b",
     },
@@ -41,7 +46,7 @@ export const title = tv({
 });
 
 export const subtitle = tv({
-  base: "w-full md:w-1/2 my-2 text-lg lg:text-xl text-default-600 block max-w-full",
+  base: "w-full md:w-2/3 my-4 text-base lg:text-lg text-gray-700 dark:text-gray-300 block max-w-full",
   variants: {
     fullWidth: {
       true: "!w-full",

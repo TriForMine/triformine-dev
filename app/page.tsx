@@ -1,6 +1,7 @@
+// app/page.tsx
+
 import { Link } from "@nextui-org/link";
 import { button as buttonStyles } from "@nextui-org/theme";
-import { Card, CardFooter, CardHeader } from "@nextui-org/card";
 import {
   CplusplusOriginal,
   CsharpOriginal,
@@ -14,135 +15,130 @@ import {
   RustOriginal,
   TypescriptPlain,
 } from "devicons-react";
-import { FunctionComponent, SVGProps } from "react";
-import Image from "next/image";
 
 import { siteConfig } from "@/config/site";
 import { subtitle, title } from "@/components/primitives";
 import { ChevronDownIcon, GithubIcon } from "@/components/icons";
-
-const Technology = ({
-  name,
-  icon,
-  url,
-}: {
-  name: string;
-  icon?: FunctionComponent<SVGProps<SVGElement> & { size?: number | string }>;
-  url: string;
-}) => {
-  return (
-    <Card className="border-none" radius="lg">
-      <CardHeader>
-        <h3 className="text-lg font-semibold text-neutral text-center truncate w-full max-w-full whitespace-nowrap overflow-ellipsis">
-          {name}
-        </h3>
-      </CardHeader>
-      {icon ? (
-        <div className="flex items-center justify-center">
-          {icon({ size: 64 })}
-        </div>
-      ) : null}
-      <CardFooter className="flex justify-center">
-        <Link
-          isExternal
-          aria-label={`Learn more about ${name}`}
-          className={buttonStyles({ variant: "bordered", radius: "full" })}
-          href={url}
-        >
-          Learn More
-        </Link>
-      </CardFooter>
-    </Card>
-  );
-};
-
-const Project = ({
-  name,
-  image,
-  url,
-}: {
-  name: string;
-  image?: string;
-  url: string;
-}) => {
-  return (
-    <Card className="border-none" radius="lg">
-      <CardHeader>
-        <h3 className="text-lg font-semibold text-neutral text-center truncate w-full max-w-full whitespace-nowrap overflow-ellipsis">
-          {name}
-        </h3>
-      </CardHeader>
-      {image ? (
-        <div className="flex items-center justify-center">
-          <Image
-            alt={name}
-            className="rounded-full object-cover shadow-lg"
-            height={64}
-            src={image}
-            width={64}
-          />
-        </div>
-      ) : null}
-      <CardFooter className="flex justify-center">
-        <Link
-          isExternal
-          aria-label={`Learn more about ${name}`}
-          className={buttonStyles({ variant: "bordered", radius: "full" })}
-          href={url}
-        >
-          Learn More
-        </Link>
-      </CardFooter>
-    </Card>
-  );
-};
+import Technology from "@/components/Technology";
+import Project from "@/components/Project";
 
 export default function Home() {
   return (
-    <div className="relative flex flex-col items-center justify-center gap-4">
-      <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10 min-h-dvh">
-        <div className="inline-block max-w-lg text-center justify-center">
-          <h1 className={title({ color: "blue" })}>TriForMine&nbsp;</h1>
-          <br />
-          <h2 className={subtitle({ class: "mt-4" })}>
-            I&apos;m a freelance developer currently working on a few projects.
-            I&apos;m also a student at the Université Cote D&apos;Azur. I&apos;m
-            currently studying computer science.
-          </h2>
-        </div>
-
-        <div className="flex gap-3">
-          <Link
-            isExternal
-            className={buttonStyles({ variant: "bordered", radius: "full" })}
-            href={siteConfig.links.github}
-          >
-            <GithubIcon size={20} />
-            GitHub
-          </Link>
-        </div>
-
-        <Link
-          aria-label="Scroll to technologies"
-          className="text-neutral hover:text-neutral-dark cursor-pointer animate-bounce mt-8"
-          href="/#technologies"
+    <div
+      className="
+        relative
+        w-full
+        min-h-screen
+        text-gray-900
+        dark:text-white
+        overflow-hidden
+      "
+    >
+      {/* Actual content container */}
+      <div className="relative z-10 flex flex-col items-center justify-center gap-4 px-4">
+        {/* HERO SECTION */}
+        <section
+          className="
+            flex
+            flex-col
+            items-center
+            justify-center
+            gap-4
+            py-16
+            md:py-24
+            min-h-dvh
+            animate-fadeInUp
+            text-center
+          "
         >
-          <ChevronDownIcon className={"w-6 h-6"} />
-        </Link>
-      </section>
-
-      <section
-        className="flex flex-col items-center justify-center gap-4 py-8 md:py-10"
-        id="technologies"
-      >
-        <div className="inline-block max-w-lg text-center justify-center">
-          <h1 className={title()}>Technologies&nbsp;</h1>
-          <br />
-          <h2 className={subtitle({ class: "mt-4" })}>
-            Here are some of the technologies I have experience with.
+          <h1
+            className={`
+              ${title({ color: "blue" })} 
+              text-4xl 
+              md:text-6xl 
+              font-extrabold 
+              mb-4 
+              relative
+            `}
+            style={{ textShadow: "0 0 10px rgba(0,200,255,0.6)" }}
+          >
+            TriForMine
+          </h1>
+          <h2 className={subtitle({ class: "mt-4 max-w-2xl" })}>
+            I&apos;m a freelance developer currently working on a few projects.
+            I&apos;m also a student at Université Côte d&apos;Azur, studying
+            computer science. Below you can check out my favorite technologies
+            and projects!
           </h2>
 
-          <div className="flex flex-wrap gap-4 mt-8 justify-center">
+          <div className="flex gap-3 mt-6">
+            <Link
+              isExternal
+              className={buttonStyles({ variant: "bordered", radius: "full" })}
+              href={siteConfig.links.github}
+            >
+              <GithubIcon className="mr-2" />
+              GitHub
+            </Link>
+          </div>
+
+          <Link
+            aria-label="Scroll down"
+            className="text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-white cursor-pointer animate-bounce mt-12"
+            href="#about"
+          >
+            <ChevronDownIcon className={"w-8 h-8"} />
+          </Link>
+        </section>
+
+        {/* ABOUT SECTION */}
+        <section
+          className="
+            flex
+            flex-col
+            items-center
+            justify-center
+            gap-4
+            py-16
+            md:py-20
+            animate-fadeInUp
+          "
+          id="about"
+        >
+          <div className="max-w-3xl text-center">
+            <h1 className={title({ color: "green" })}>About&nbsp;Me</h1>
+            <h2 className={subtitle({ class: "mt-4" })}>
+              When I&apos;m not coding, you might find me gaming, exploring new
+              tech stacks, or contributing to open-source projects. I love
+              building tools that make developers more productive and help
+              people solve real-world problems. I&apos;m always eager to learn
+              and collaborate on exciting projects.
+            </h2>
+          </div>
+        </section>
+
+        {/* TECHNOLOGIES SECTION */}
+        <section
+          className="
+            flex
+            flex-col
+            items-center
+            justify-center
+            gap-4
+            py-16
+            md:py-20
+            animate-fadeInUp
+          "
+          id="technologies"
+        >
+          <div className="inline-block max-w-lg text-center">
+            <h1 className={title({ color: "cyan" })}>Technologies&nbsp;</h1>
+            <h2 className={subtitle({ class: "mt-4" })}>
+              Here are some of the tools and technologies I love to use:
+            </h2>
+          </div>
+
+          <div className="flex flex-wrap gap-6 mt-8 justify-center">
             <Technology
               icon={RustOriginal}
               name="Rust"
@@ -199,21 +195,30 @@ export default function Home() {
               url="https://www.java.com"
             />
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section
-        className="flex flex-col items-center justify-center gap-4 py-8 md:py-10"
-        id="projects"
-      >
-        <div className="inline-block max-w-lg text-center justify-center">
-          <h1 className={title()}>Projects&nbsp;</h1>
-          <br />
-          <h2 className={subtitle({ class: "mt-4" })}>
-            Here are some of the projects I&apos;ve worked on.
-          </h2>
+        {/* PROJECTS SECTION */}
+        <section
+          className="
+            flex
+            flex-col
+            items-center
+            justify-center
+            gap-4
+            py-16
+            md:py-20
+            animate-fadeInUp
+          "
+          id="projects"
+        >
+          <div className="inline-block max-w-lg text-center">
+            <h1 className={title({ color: "pink" })}>Projects&nbsp;</h1>
+            <h2 className={subtitle({ class: "mt-4" })}>
+              Take a look at some of the projects I&apos;ve built:
+            </h2>
+          </div>
 
-          <div className="flex flex-wrap gap-4 mt-8 justify-center">
+          <div className="flex flex-wrap gap-6 mt-8 justify-center">
             <Project
               image="/isekai-maid.png"
               name="Isekai Maid"
@@ -225,8 +230,8 @@ export default function Home() {
               url="https://www.gameow.app"
             />
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
     </div>
   );
 }
