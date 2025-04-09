@@ -10,7 +10,6 @@ interface ProjectProps {
   url: string;
   description?: string;
   tags?: string[];
-  status?: "completed" | "in-progress" | "planned";
 }
 
 const Project: React.FC<ProjectProps> = ({
@@ -19,21 +18,7 @@ const Project: React.FC<ProjectProps> = ({
   url,
   description = "A project I've been working on.",
   tags = [],
-  status = "completed",
 }) => {
-  // Status colors
-  const statusColors = {
-    completed: "success",
-    "in-progress": "warning",
-    planned: "secondary",
-  };
-
-  // Status labels
-  const statusLabels = {
-    completed: "Completed",
-    "in-progress": "In Progress",
-    planned: "Planned",
-  };
 
   return (
     <div
@@ -58,14 +43,9 @@ const Project: React.FC<ProjectProps> = ({
         radius="lg"
       >
         <CardHeader className="flex flex-col items-start p-5 pb-0">
-          <div className="flex justify-between items-center w-full">
-            <h3 className="text-2xl font-bold text-gray-800 dark:text-gray-200">
-              {name}
-            </h3>
-            <Chip color={statusColors[status] as any} size="sm" variant="flat">
-              {statusLabels[status]}
-            </Chip>
-          </div>
+          <h3 className="text-2xl font-bold text-gray-800 dark:text-gray-200">
+            {name}
+          </h3>
         </CardHeader>
 
         <CardBody className="p-5">

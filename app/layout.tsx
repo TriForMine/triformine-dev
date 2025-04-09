@@ -63,7 +63,6 @@ export default function RootLayout({
             }}
           />
 
-
           {/* Subtle gradient orbs */}
           <div className="absolute top-1/4 left-1/4 w-56 h-56 bg-blue-300/20 dark:bg-blue-700/10 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-[100px] animate-pulse-slow" />
           <div className="absolute bottom-1/3 right-1/4 w-64 h-64 bg-purple-300/20 dark:bg-purple-700/10 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-[100px] animate-pulse-slower" />
@@ -90,8 +89,8 @@ export default function RootLayout({
                       TriForMine
                     </h3>
                     <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
-                      Freelance developer passionate about creating elegant
-                      solutions to complex problems.
+                      I&apos;m a freelance developer passionate about creating
+                      elegant solutions to complex problems.
                     </p>
                     <div className="flex space-x-3">
                       <a

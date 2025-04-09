@@ -92,13 +92,12 @@ export default function Home() {
               className={`${subtitle({ class: "mt-4 max-w-2xl" })} animate-fadeInUp`}
               style={{ animationDelay: "0.3s" }}
             >
-              I&apos;m a{" "}
+              I&apos;m the{" "}
               <span className="text-blue-500 dark:text-blue-400 font-semibold">
                 creator of Isekai Maid
               </span>{" "}
-              and other projects. I&apos;ve been learning scripting since I was
-              10 years old and I&apos;m currently 20 years old. Below you can
-              check out my favorite technologies and projects!
+              and other projects. I began programming at the age of 10 and have been passionate about development ever since. Below, you can
+              explore my favorite technologies and projects!
             </h2>
 
             <div
@@ -198,13 +197,12 @@ export default function Home() {
                   Who I Am
                 </h3>
                 <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                  I&apos;m TriForMine, creator of Isekai Maid. I&apos;ve been
-                  learning scripting since I was 10 years old and I&apos;m
-                  currently 20 years old.
+                  I&apos;m TriForMine, a software developer with a decade of programming experience.
+                  My journey in development began at age 10, and I&apos;m currently 20 years old.
                 </p>
                 <p className="text-gray-700 dark:text-gray-300 leading-relaxed mt-4">
-                  I&apos;m passionate about creating useful applications and
-                  contributing to open-source projects like discordeno.
+                  I&apos;m dedicated to creating useful applications and
+                  actively contributing to open-source projects such as Discordeno.
                 </p>
 
                 {/* Languages */}
@@ -402,7 +400,7 @@ export default function Home() {
               <span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full" />
             </h1>
             <h2 className={subtitle({ class: "mt-4 max-w-2xl mx-auto" })}>
-              Here are some of the tools and technologies I love to use in my
+              Here are some of the tools and technologies I frequently use in my
               projects:
             </h2>
           </div>
@@ -510,7 +508,6 @@ export default function Home() {
               description="A waifu Discord bot project built using Discordeno, Bun, PostgreSQL, RabbitMQ, and Rust."
               image="/isekai-maid.png"
               name="Isekai Maid"
-              status="completed"
               tags={["TypeScript", "Discordeno", "PostgreSQL", "Rust"]}
               url="https://www.isekaimaid.com"
             />
@@ -518,7 +515,6 @@ export default function Home() {
               description="A gaming platform that connects players and helps them discover new games."
               image="/gameow.svg"
               name="Gameow"
-              status="in-progress"
               tags={["React", "Next.js", "PostgreSQL", "Tailwind CSS"]}
               url="https://gameow.app"
             />
@@ -526,7 +522,6 @@ export default function Home() {
               description="Contributions to the Discordeno project, a Discord API library."
               image="/discordeno.png"
               name="Discordeno"
-              status="in-progress"
               tags={["TypeScript", "Discord API", "Deno"]}
               url="https://github.com/discordeno/discordeno"
             />
